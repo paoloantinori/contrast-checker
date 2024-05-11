@@ -24,7 +24,10 @@ Array.from($form.elements).forEach($input => {
     })
     return
   }
-  
+  if ($input.name === 'alphaChannel') {
+    return
+  }
+    
   appendColourInput($input)
   $input.addEventListener('change', debounce(submitForm))
   $input.addEventListener('input', debounce(submitForm))
@@ -62,15 +65,25 @@ function renderView (data) {
   const rootStyle = document.documentElement.style
   rootStyle.setProperty('--app-input-page-background', data.input.pageBackground)
   rootStyle.setProperty('--app-input-object-background', data.input.objectBackground)
+  rootStyle.setProperty('--app-input-object-alpha-background', data.input.appliedAlpha)
   rootStyle.setProperty('--app-input-text-color', data.input.textColour)
+  rootStyle.setProperty('--app-input-applied-alpha', data.input.appliedAlpha)
+  rootStyle.setProperty('--app-input-alpha-channel', data.input.alphaChannel)
+
   rootStyle.setProperty('--app-object-contrast-with-page-color', data.objectContrastWithPage.status.color)
   rootStyle.setProperty('--app-text-contrast-with-object-color', data.textContrastWithObject.status.color)
+  rootStyle.setProperty('--app-text-contrast-with-alpha-background-color', data.textContrastWithAlphaBackground.status.color)
   
   document.querySelector('[data-app-text-contrast-with-object-contrast-ratio]').textContent = data.textContrastWithObject.contrastRatio
   document.querySelector('[data-app-object-contrast-with-page-contrast-ratio]').textContent = data.objectContrastWithPage.contrastRatio
+  document.querySelector('[data-app-text-contrast-with-alpha-background-contrast-ratio]').textContent = data.textContrastWithAlphaBackground.contrastRatio
   
   document.querySelector('[data-app-text-contrast-with-object-status-title]').textContent = data.textContrastWithObject.status.title 
   document.querySelector('[data-app-object-contrast-with-page-status-title]').textContent = data.objectContrastWithPage.status.title 
+  document.querySelector('[data-app-text-contrast-with-alpha-background-title]').textContent = data.textContrastWithAlphaBackground.status.title 
+  
+  document.getElementById('appliedAlpha-colour').value = data.input.appliedAlpha
+  document.getElementById('appliedAlpha').value = data.input.appliedAlpha
 }
 
 function resetColourInputs () {
@@ -78,6 +91,7 @@ function resetColourInputs () {
 }
 
 function appendColourInput ($input) {
+  
   let $colourInput = document.createElement('input')
   $colourInput.className = 'js-app-input-color ' + $input.className + ' app-input-color'
   $colourInput.value = $input.value
@@ -87,11 +101,15 @@ function appendColourInput ($input) {
   // Feature detection
   if ($colourInput.type === "color" && typeof $colourInput.selectionStart !== "number") {
     $colourInput.addEventListener('input', event => {
+
+      console.log("__adding event listener to color input ")
       $input.value = $colourInput.value
       var event = new Event('input')
       $input.dispatchEvent(event)
     })
     $input.addEventListener('input', event => {
+
+      console.log("__adding event listener to input")
       $colourInput.value = convertCssColorNameToHex($input.value)
     })
     $input.parentNode.appendChild($colourInput)

@@ -49,6 +49,18 @@
   color: var(--app-input-text-color);
 }
 
+.app-input-object-alpha {
+  vertical-align: 6.25em;
+  line-height: 6.25em;
+  font-family: sans-serif;
+  background: #DDD;
+  height: 6.25em;
+  width: 6.25em;
+  border-radius: 50%;
+  background-color: var(--app-input-object-alpha-background);
+  color: var(--app-input-text-color);
+}
+
 .app-input-color {
   margin-top: 5px;
   vertical-align: bottom;

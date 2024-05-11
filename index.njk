@@ -6,12 +6,18 @@
     :root {
       --app-input-page-background: {{ input.pageBackground }};
       --app-input-object-background: {{ input.objectBackground }};
+      --app-input-object-alpha-background: {{ input.appliedAlpha }};
+      --app-input-alpha-channel: {{ input.alphaChannel }};
+      --app-input-applied-alpha: {{ input.appliedAlpha }};
       --app-input-text-color: {{ input.textColour }};
       --app-object-contrast-with-page-color: {{ objectContrastWithPage.status.color }}; 
       --app-text-contrast-with-object-color: {{ textContrastWithObject.status.color }};
+      --app-text-contrast-with-page-color: {{ textContrastWithPage.status.color }}; 
+      --app-text-contrast-with-alpha-background-color: {{ textContrastWithAlphaBackground.status.color }}; 
+
     }
   </style>
-  <h1 class="govuk-heading-xl">Contrast Checker</h1>
+  <h1 class="govuk-heading-xl">Contrast Checker With Alpha Support</h1>
   <div class="app-grid">
     <div class="app-grid-column">      
       <form>
@@ -38,6 +44,37 @@
           id: "objectBackground",
           name: "objectBackground",
           value: input.objectBackground,
+          attributes: {
+            autocomplete: "off",
+            autocorrect: "off",
+            spellcheck: "off"
+          }
+        }) }}
+
+
+        {{ govukInput({
+          classes: "govuk-input--width-2",
+          label: {
+            text: "Alpha Channel Percentage"
+          },
+          id: "alphaChannel",
+          name: "alphaChannel",
+          value: input.alphaChannel,
+          attributes: {
+            autocomplete: "off",
+            autocorrect: "off",
+            spellcheck: "off"
+          }
+        }) }}
+
+        {{ govukInput({
+          classes: "govuk-input--width-5",
+          label: {
+            text: "Applied Alpha"
+          },
+          id: "appliedAlpha",
+          name: "appliedAlpha",
+          value: input.appliedAlpha,
           attributes: {
             autocomplete: "off",
             autocorrect: "off",
@@ -78,6 +115,12 @@
           Text
         </div>
       </div>
+  
+      <div class="app-input-page">
+        <div class="app-input-object-alpha">
+          Text
+        </div>
+      </div>
     </div>
 
     <div class="app-grid-column" aria-live="polite">
@@ -111,6 +154,22 @@
       <p>
         <a class="govuk-link" href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast">
           Understanding Success Criterion 1.4.11: Non-text Contrast
+        </a>
+      </p>
+
+      <h2 class="govuk-heading-s">Text contrast with alpha background</h2>
+      <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-text-contrast-with-alpha-background-title
+            style="color: var(--app-text-contrast-with-alpha-background-color);">
+        {{ textContrastWithAlphaBackground.status.title }}
+      </p>
+      <p class="govuk-heading-xl govuk-!-margin-bottom-0">
+        <span data-app-text-contrast-with-alpha-background-contrast-ratio>
+          {{- textContrastWithAlphaBackground.contrastRatio -}}
+        </span>:1
+      </p>
+      <p class="govuk-!-margin-bottom-7">
+        <a class="govuk-link" href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum">
+          Understanding Success Criterion 1.4.3: Contrast (Minimum)
         </a>
       </p>
 
