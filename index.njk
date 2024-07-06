@@ -129,7 +129,11 @@
       <h2 class="govuk-heading-s">Text contrast with object background</h2>
       <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-text-contrast-with-object-status-title
             style="color: var(--app-text-contrast-with-object-color);">
-        {{ textContrastWithObject.status.title }}
+        @@{{ textContrastWithObject.status.title }}@@
+      </p>
+      <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-text-contrast-with-object-status-title
+      style="color: var(--app-text-contrast-with-object-color);">
+        ##{{ textContrastWithObject.status.title }}##
       </p>
       <p class="govuk-heading-xl govuk-!-margin-bottom-0">
         <span data-app-text-contrast-with-object-contrast-ratio>
