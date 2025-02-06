@@ -138,7 +138,7 @@
 
     <div class="app-grid-column" aria-live="polite">
 
-      <h2 class="govuk-heading-s">Text contrast with object background</h2>
+      <h2 class="govuk-heading-s">Text contrast with object colour</h2>
       <p class="govuk-heading-xl govuk-!-margin-bottom-0">
         <span data-app-text-contrast-with-object-contrast-ratio>
           {{- textContrastWithObject.contrastRatio -}}
@@ -150,16 +150,33 @@
         <ul class="govuk-list govuk-!-margin-top-0">
           <li>WCAG AA: 
             <span style="color: var(--app-text-contrast-with-object-color);
-          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-object-status-title >   @@{{ textContrastWithObject.status.title }}@@
-              <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-text-contrast-with-object-status-title
-      style="color: var(--app-text-contrast-with-object-color);">
-        ##{{ textContrastWithObject.status.title }}##
-              </p>
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-object-status-title>
+        {{ textContrastWithObject.status.title }}
             </span>
           </li>
-          <li>WCAG AAA: <span style="color: var(--app-text-contrast-with-object-color);
+
+          <li>WCAG AAA: 
+            <span style="color: var(--app-text-contrast-with-object-color);
           text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-object-status-title>
-              {{ textContrastWithObject.status }}
+              {{ textContrastWithObject.status.title }}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="govuk-body govuk-!-margin-top-3">
+        <span class="govuk-!-font-weight-bold">Large text: </span>
+        <ul class="govuk-list govuk-!-margin-top-0">
+          <li>WCAG AA: 
+            <span style="color: var(--app-text-contrast-with-object-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-object-status-title>
+          {{ textContrastWithObject.status.title }}
+            </span>
+          </li>
+          <li>WCAG AAA: 
+            <span style="color: var(--app-text-contrast-with-object-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-object-status-title>
+              {{ textContrastWithObject.status.title }}
             </span>
           </li>
         </ul>
@@ -169,41 +186,86 @@
         <li>
           <a class="govuk-link" href="https://www.w3.org/TR/WCAG22/#contrast-minimum">
           1.4.3: Contrast (Minimum)
-        </a>
+          </a>
         </li>
         <li>
           <a class="govuk-link" href="https://www.w3.org/TR/WCAG22/#contrast-enhanced">
           1.4.6: Contrast (Enhanced)
-        </a>
+          </a>
         </li>
       </ul>
 
-      <h2 class="govuk-heading-s">Object contrast with page background</h2>
-      <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-object-contrast-with-page-status-title
-            style="color: var(--app-object-contrast-with-page-color);">
-        {{ objectContrastWithPage.status.title }}
-      </p>
+      <h2 class="govuk-heading-s">Object contrast with page (background) colour</h2>
       <p class="govuk-heading-xl govuk-!-margin-bottom-0">
         <span data-app-object-contrast-with-page-contrast-ratio>
           {{- objectContrastWithPage.contrastRatio -}}
         </span>:1
       </p>
-      <p>
+
+      <div class="govuk-body govuk-!-margin-top-3">
+        <span class="govuk-!-font-weight-bold">Graphical Objects: </span>
+        <ul class="govuk-list govuk-!-margin-top-0">
+          <li>WCAG AA: 
+            <span style="color: var(--app-object-contrast-with-page-color);
+          text-transform: uppercase; font-weight: 700" data-app-object-contrast-with-page-status-title >
+          {{ objectContrastWithPage.status.title }}
+              </p>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="govuk-!-margin-bottom-7">
         <a class="govuk-link" href="https://www.w3.org/TR/WCAG22/#non-text-contrast">
           1.4.11: Non-text Contrast
         </a>
       </p>
 
-      <h2 class="govuk-heading-s">Text contrast with alpha background</h2>
-      <p class="govuk-heading-l govuk-!-margin-bottom-0" data-app-text-contrast-with-alpha-background-title
-            style="color: var(--app-text-contrast-with-alpha-background-color);">
-        {{ textContrastWithAlphaBackground.status.title }}
-      </p>
+      <h2 class="govuk-heading-s">Text contrast with alpha composed background colour</h2>
       <p class="govuk-heading-xl govuk-!-margin-bottom-0">
         <span data-app-text-contrast-with-alpha-background-contrast-ratio>
           {{- textContrastWithAlphaBackground.contrastRatio -}}
         </span>:1
       </p>
+      
+      <div class="govuk-body govuk-!-margin-top-3">
+        <span class="govuk-!-font-weight-bold">Normal text: </span>
+        <ul class="govuk-list govuk-!-margin-top-0">
+          <li>WCAG AA: 
+            <span style="color: var(--app-text-contrast-with-alpha-background-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-alpha-background-title>
+              {{ textContrastWithAlphaBackground.status.title }}
+            </span>
+          </li>
+
+          <li>WCAG AAA: 
+            <span style="color: var(--app-text-contrast-with-alpha-background-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-alpha-background-title>
+              {{ textContrastWithAlphaBackground.status.title }}
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="govuk-body govuk-!-margin-top-3">
+        <span class="govuk-!-font-weight-bold">Large text: </span>
+        <ul class="govuk-list govuk-!-margin-top-0">
+          <li>WCAG AA: 
+            <span style="color: var(--app-text-contrast-with-alpha-background-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-alpha-background-title>
+          {{ textContrastWithAlphaBackground.status.title }}
+            </span>
+          </li>
+
+          <li>WCAG AAA: 
+            <span style="color: var(--app-text-contrast-with-alpha-background-color);
+          text-transform: uppercase; font-weight: 700" data-app-text-contrast-with-alpha-background-title>
+              {{ textContrastWithAlphaBackground.status.title }}
+            </span>
+          </li>
+        </ul>
+      </div>
+
       <ul class="govuk-list govuk-!-margin-bottom-7 govuk-body-s">
         <li>
           <a class="govuk-link" href="https://www.w3.org/TR/WCAG22/#contrast-minimum">

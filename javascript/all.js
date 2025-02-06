@@ -78,9 +78,9 @@ function renderView (data) {
   document.querySelector('[data-app-object-contrast-with-page-contrast-ratio]').textContent = data.objectContrastWithPage.contrastRatio
   document.querySelector('[data-app-text-contrast-with-alpha-background-contrast-ratio]').textContent = data.textContrastWithAlphaBackground.contrastRatio
   
-  document.querySelectorAll('[data-app-text-contrast-with-object-status-title]').forEach(item => item.textContent = data.textContrastWithObject.status.title )
+  document.querySelectorAll('[data-app-text-contrast-with-object-status-title]').forEach(item => item.textContent = data.textContrastWithObject.status.title)
   document.querySelector('[data-app-object-contrast-with-page-status-title]').textContent = data.objectContrastWithPage.status.title 
-  document.querySelector('[data-app-text-contrast-with-alpha-background-title]').textContent = data.textContrastWithAlphaBackground.status.title 
+  document.querySelectorAll('[data-app-text-contrast-with-alpha-background-title]').forEach(item => item.textContent = data.textContrastWithAlphaBackground.status.title)
   
   document.getElementById('appliedAlpha-colour').value = data.input.appliedAlpha
   document.getElementById('appliedAlpha').value = data.input.appliedAlpha
