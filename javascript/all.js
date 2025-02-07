@@ -70,17 +70,33 @@ function renderView (data) {
   rootStyle.setProperty('--app-input-applied-alpha', data.input.appliedAlpha)
   rootStyle.setProperty('--app-input-alpha-channel', data.input.alphaChannel)
 
-  rootStyle.setProperty('--app-object-contrast-with-page-color', data.objectContrastWithPage.status.color)
-  rootStyle.setProperty('--app-text-contrast-with-object-color', data.textContrastWithObject.status.color)
-  rootStyle.setProperty('--app-text-contrast-with-alpha-background-color', data.textContrastWithAlphaBackground.status.color)
+  rootStyle.setProperty('--app-object-contrast-with-page-color', data.objectContrastWithPage.objectAA.color)
+
+  rootStyle.setProperty('--app-text-contrast-with-object-normal-aa-color', data.textContrastWithObject.normalAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-object-normal-aaa-color', data.textContrastWithObject.normalAAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-object-large-aa-color', data.textContrastWithObject.largeAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-object-large-aaa-color', data.textContrastWithObject.largeAAA.color)
+
+  rootStyle.setProperty('--app-text-contrast-with-alpha-background-normal-aa-color', data.textContrastWithAlphaBackground.normalAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-alpha-background-normal-aaa-color', data.textContrastWithAlphaBackground.normalAAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-alpha-background-large-aa-color', data.textContrastWithAlphaBackground.largeAA.color)
+  rootStyle.setProperty('--app-text-contrast-with-alpha-background-large-aaa-color', data.textContrastWithAlphaBackground.largeAAA.color)
   
   document.querySelector('[data-app-text-contrast-with-object-contrast-ratio]').textContent = data.textContrastWithObject.contrastRatio
   document.querySelector('[data-app-object-contrast-with-page-contrast-ratio]').textContent = data.objectContrastWithPage.contrastRatio
   document.querySelector('[data-app-text-contrast-with-alpha-background-contrast-ratio]').textContent = data.textContrastWithAlphaBackground.contrastRatio
   
-  document.querySelectorAll('[data-app-text-contrast-with-object-status-title]').forEach(item => item.textContent = data.textContrastWithObject.status.title)
-  document.querySelector('[data-app-object-contrast-with-page-status-title]').textContent = data.objectContrastWithPage.status.title 
-  document.querySelectorAll('[data-app-text-contrast-with-alpha-background-title]').forEach(item => item.textContent = data.textContrastWithAlphaBackground.status.title)
+  document.querySelector('[data-app-text-contrast-with-object-normal-aa]').textContent = data.textContrastWithObject.normalAA.title
+  document.querySelector('[data-app-text-contrast-with-object-normal-aaa]').textContent = data.textContrastWithObject.normalAAA.title
+  document.querySelector('[data-app-text-contrast-with-object-large-aa]').textContent = data.textContrastWithObject.largeAA.title
+  document.querySelector('[data-app-text-contrast-with-object-large-aaa]').textContent = data.textContrastWithObject.largeAAA.title
+
+  document.querySelector('[data-app-object-contrast-with-page-object-aa]').textContent = data.objectContrastWithPage.objectAA.title
+
+  document.querySelector('[data-app-text-contrast-with-alpha-background-normal-aa]').textContent = data.textContrastWithAlphaBackground.normalAA.title
+  document.querySelector('[data-app-text-contrast-with-alpha-background-normal-aaa]').textContent = data.textContrastWithAlphaBackground.normalAAA.title
+  document.querySelector('[data-app-text-contrast-with-alpha-background-large-aa]').textContent = data.textContrastWithAlphaBackground.largeAA.title
+  document.querySelector('[data-app-text-contrast-with-alpha-background-large-aaa]').textContent = data.textContrastWithAlphaBackground.largeAAA.title
   
   document.getElementById('appliedAlpha-colour').value = data.input.appliedAlpha
   document.getElementById('appliedAlpha').value = data.input.appliedAlpha
