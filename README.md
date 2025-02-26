@@ -2,9 +2,16 @@
 
 A modified version of https://github.com/NickColley/contrast-checker by Nick Colley that adds logic for **Alpha channels**
 
+
+Live app here: https://alpha-channel--contrast-checker-alpha.netlify.app/  
+
+
+
+
+
 ![Screenshot](/screenshot.png)
 
-Demo app: https://alpha-channel--contrast-checker-alpha.netlify.app/  
+
 
 
 ##### Useful links
