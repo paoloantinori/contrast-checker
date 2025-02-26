@@ -11,36 +11,16 @@ var DEFAULT_INPUT = {
 }
 
 // https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/contrast-ratio.js
-var textLevels = {
-  "Fail": {
-    range: [0, 3],
+var levels = {
+  "fail": {
+    title: "Fail",
     color: "hsl(0, 100%, 40%)"
   },
-  "AA Large": {
-    range: [3, 4.5],
-    color: "hsl(22, 84%, 37%)"
-  },
-  "AA": {
-    range: [4.5, 7],
+  "pass": {
+    title: "Pass",
     color: "hsl(142, 100%, 26%)"
-  },
-  "AAA": {
-    range: [7, 22],
-    color: "hsl(142, 52%, 24%)"
   }
 };
-
-// https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast
-var nonTextLevels = {
-  "Fail": {
-    range: [0, 3],
-    color: "hsl(0, 100%, 40%)"
-  },
-  "AA": {
-    range: [3, 22],
-    color: "hsl(142, 100%, 26%)"
-  }
-}
 
 function roundNumber (number) {
   // Truncate the number without rounding up
@@ -52,23 +32,29 @@ function roundNumber (number) {
   return number
 }
 
-function rangeIntersect(min, max, value) {
-  return value <= max && value >= min
-}
-
-function getLevelStatus (contrastRatio, levels) {
+// https://www.w3.org/TR/WCAG22/#contrast-minimum
+// https://www.w3.org/TR/WCAG22/#contrast-enhanced
+// https://www.w3.org/TR/WCAG22/#non-text-contrast
+function getPassFail(contrastRatio, criteria) {
   let status
-  for (var level in levels) {
-    var bounds = levels[level].range
-    var lower = bounds[0]
-    var upper = bounds[1]
-
-    if (rangeIntersect(lower, upper, contrastRatio)) {
-      status = {
-        title: level,
-        ...levels[level]
-      }
-    }
+  switch (criteria) {
+    case "NormalAA":
+      status = (contrastRatio >= 4.5) ? levels.pass : levels.fail;
+      break;
+    case "NormalAAA":
+      status = (contrastRatio >= 7) ? levels.pass : levels.fail;
+      break;
+    case "LargeAA":
+      status = (contrastRatio >= 3) ? levels.pass : levels.fail;
+      break;
+    case "LargeAAA":
+      status = (contrastRatio >= 4.5) ? levels.pass : levels.fail;
+      break;
+    case "ObjectAA":
+      status = (contrastRatio >= 3) ? levels.pass : levels.fail;
+      break;
+    default:
+      status = levels.fail;
   }
   return status
 }
@@ -134,7 +120,10 @@ function contrast (input) {
 
   let textContrastWithAlphaBackground = {
     contrastRatio: roundNumber(textContrastWithAlphaBackgroundContrastRatio),
-    status: getLevelStatus(textContrastWithAlphaBackgroundContrastRatio, textLevels)
+    normalAA: getPassFail(textContrastWithAlphaBackgroundContrastRatio, "NormalAA"),
+    normalAAA: getPassFail(textContrastWithAlphaBackgroundContrastRatio, "NormalAAA"),
+    largeAA: getPassFail(textContrastWithAlphaBackgroundContrastRatio, "LargeAA"),
+    largeAAA: getPassFail(textContrastWithAlphaBackgroundContrastRatio, "LargeAAA")
   }
   
   let textContrastWithObjectContrastRatio = hexContrastCheck(
@@ -144,7 +133,10 @@ function contrast (input) {
 
   let textContrastWithObject = {
     contrastRatio: roundNumber(textContrastWithObjectContrastRatio),
-    status: getLevelStatus(textContrastWithObjectContrastRatio, textLevels)
+    normalAA: getPassFail(textContrastWithObjectContrastRatio, "NormalAA"),
+    normalAAA: getPassFail(textContrastWithObjectContrastRatio, "NormalAAA"),
+    largeAA: getPassFail(textContrastWithObjectContrastRatio, "LargeAA"),
+    largeAAA: getPassFail(textContrastWithObjectContrastRatio, "LargeAAA")
   }
   
   let objectContrastWithPageContrastRatio = hexContrastCheck(
@@ -154,9 +146,8 @@ function contrast (input) {
 
   let objectContrastWithPage = {
     contrastRatio: roundNumber(objectContrastWithPageContrastRatio),
-    status: getLevelStatus(objectContrastWithPageContrastRatio, nonTextLevels)
+    objectAA: getPassFail(objectContrastWithPageContrastRatio, "ObjectAA")
   }
-
 
   return {
     input,

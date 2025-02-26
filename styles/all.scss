@@ -2,7 +2,7 @@
 
 .app-grid {
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 4rem;
 }
 
 @media (min-width: 50em) {
@@ -68,4 +68,13 @@
 
 [hidden=true] {
   display: none !important;
+}
+
+.govuk-hint {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.govuk-width-container {
+  max-width: 1020px;
 }
