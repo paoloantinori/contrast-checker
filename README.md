@@ -1,10 +1,13 @@
 # contrast-checker
 
-A modified version of https://github.com/NickColley/contrast-checker by Nick Colley that adds logic for Alpha channels
+A modified version of https://github.com/NickColley/contrast-checker by Nick Colley that adds logic for **Alpha channels**
 
 ![Screenshot](/screenshot.png)
 
 Demo app: https://alpha-channel--contrast-checker-alpha.netlify.app/  
+
+
+##### Useful links
 Logic implemented based on this discussion: https://stackoverflow.com/questions/2049230/convert-rgba-color-to-rgb  
 Full Theory: https://en.wikipedia.org/wiki/Alpha_compositing  
 
